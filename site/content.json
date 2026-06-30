@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "eyebrow": "Home studio · Chartres, à 1h de Paris",
+    "title": "Capturer la douceur<br>d'<i>avant</i>, le souffle<br>du <i>premier instant</i>.",
+    "lead": "Je vous accueille dans mon home studio, en toute intimité, pour des portraits artistiques et naturels qui racontent votre histoire : votre grossesse, les premiers instants de votre bébé, ou les souvenirs de votre famille. Déplacement possible à domicile et en extérieur.",
+    "badge": "+20 ans<br>de passion pour la photo"
+  },
+  "about": {
+    "title": "Une passion née il y a<br>plus de 20 ans.",
+    "paragraph_1": "Adolescente déjà, j'immortalisais mes amies, mes voyages, les visages qui comptaient pour moi. Cet amour de l'image ne m'a jamais quittée : la lumière, les courbes, le bon angle, j'ai toujours eu l'œil pour capturer ce qui mérite d'être gardé pour toujours.",
+    "paragraph_2": "Après un parcours professionnel bien différent, j'ai choisi d'écouter ce qui m'animait depuis toujours et de me reconvertir pleinement dans la photographie. Je me suis formée auprès de spécialistes reconnues de la grossesse et de la naissance, pour vous offrir un accompagnement à la fois technique et plein de douceur.",
+    "stat1_value": "20+",
+    "stat1_label": "Années de passion",
+    "stat2_value": "Chartres",
+    "stat2_label": "Home studio, 1h de Paris",
+    "stat3_value": "100%",
+    "stat3_label": "Photos retouchées à la main"
+  },
+  "services": {
+    "card1_title": "Grossesse",
+    "card1_price": "Sur devis",
+    "card1_items": [
+      "Idéalement au 3ᵉ trimestre",
+      "Guide tenues envoyé à la réservation",
+      "7 photos HD retouchées (coul. + N&B)",
+      "Possibilité avec le futur papa / aînés"
+    ],
+    "card2_title": "Grossesse + Naissance",
+    "card2_price": "Sur devis",
+    "card2_items": [
+      "7 photos grossesse + 7 naissance HD",
+      "Dressing naissance fourni",
+      "Accueil tout en douceur après la maternité",
+      "Solde réglé en 2 fois (séance grossesse / naissance)"
+    ],
+    "card3_title": "Naissance",
+    "card3_price": "Sur devis",
+    "card3_items": [
+      "Idéalement entre J+5 et J+15",
+      "Temps pris pour apaiser bébé",
+      "7 photos HD retouchées (coul. + N&B)",
+      "Avec parents et fratrie si souhaité"
+    ],
+    "note": "Photos supplémentaires, tirages, albums et coffrets cadeaux disponibles sur demande. Je ne livre que des photos retouchées, jamais de fichiers bruts."
+  },
+  "contact": {
+    "lead": "Racontez-moi votre projet, je reviens vers vous sous 48h pour convenir ensemble du meilleur moment.",
+    "address": "Chartres — home studio, à 1h de Paris (déplacement possible)",
+    "email": "bonjour@solenelemazou.fr"
+  },
+  "quote": {
+    "text": "Solène a su créer un cocon de douceur pour notre séance naissance. Des photos d'une délicatesse incroyable, qui nous suivront toute la vie.",
+    "author": "— Léa & Antoine, séance naissance"
+  },
+  "footer": {
+    "description": "Photographe à Chartres, spécialisée grossesse, naissance et familles. Home studio, déplacement possible."
+  }
+}

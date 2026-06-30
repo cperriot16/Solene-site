@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camille Auber — Photographe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cloud:#FBF7F5;
+    --blush:#F0DCD8;
+    --blush-deep:#E7C9C3;
+    --rose:#C99891;
+    --rose-deep:#A6726B;
+    --ink:#5A4341;
+    --ink-soft:#8A6F6C;
+    --gold:#D4B896;
+    --radius-soft: 40px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cloud);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    letter-spacing:.01em;
+  }
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-size:11px;
+    color:var(--rose-deep);
+    font-weight:500;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 6vw;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:28px 6vw;
+    transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  nav.scrolled{
+    background:rgba(251,247,245,.92);
+    backdrop-filter:blur(10px);
+    padding:16px 6vw;
+    box-shadow:0 1px 0 rgba(90,67,65,.08);
+  }
+  .logo{font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:.04em;color:var(--ink);}
+  .logo em{font-style:italic;color:var(--rose-deep);}
+  .navlinks{display:flex;gap:38px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;}
+  .navlinks a{position:relative;padding-bottom:4px;}
+  .navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--rose-deep);transition:width .35s ease;}
+  .navlinks a:hover::after{width:100%;}
+  .nav-cta{
+    border:1px solid var(--rose-deep);
+    padding:10px 24px;
+    border-radius:30px;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    transition:background .3s ease,color .3s ease;
+  }
+  .nav-cta:hover{background:var(--rose-deep);color:var(--cloud);}
+  .burger{display:none;font-size:22px;cursor:pointer;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding-top:90px;
+    overflow:hidden;
+  }
+  .cocoon-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 70% 60% at 75% 30%, var(--blush) 0%, transparent 60%),
+               radial-gradient(ellipse 60% 50% at 15% 80%, var(--blush-deep) 0%, transparent 55%);
+    z-index:0;
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    width:100%;
+    display:grid;grid-template-columns:1.05fr .95fr;
+    gap:5vw;align-items:center;
+  }
+  .hero-copy .eyebrow{margin-bottom:22px;display:inline-block;}
+  .hero h1{
+    font-size:clamp(42px,5.4vw,76px);
+    line-height:1.04;
+    color:var(--ink);
+    margin-bottom:26px;
+  }
+  .hero h1 i{font-style:italic;color:var(--rose-deep);}
+  .hero p.lead{
+    font-size:17px;line-height:1.8;color:var(--ink-soft);
+    max-width:440px;margin-bottom:38px;
+  }
+  .btn-row{display:flex;gap:18px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--rose-deep);color:var(--cloud);
+    padding:16px 34px;border-radius:40px;
+    font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    transition:transform .3s ease, background .3s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:var(--ink);transform:translateY(-2px);}
+  .btn-ghost{
+    border-bottom:1px solid var(--ink);
+    padding:16px 4px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:240px 240px 24px 24px;
+    overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(90,67,65,.35);
+  }
+  .hero-visual::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(90,67,65,0) 55%, rgba(90,67,65,.28) 100%);
+  }
+  .hero-badge{
+    position:absolute;left:-30px;bottom:40px;z-index:2;
+    background:var(--cloud);
+    border-radius:50%;
+    width:120px;height:120px;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px;line-height:1.3;color:var(--ink);
+    box-shadow:0 18px 40px -10px rgba(90,67,65,.25);
+    border:1px solid var(--blush-deep);
+  }
+
+  /* drape divider */
+  .drape{display:block;width:100%;height:90px;margin-top:-2px;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{position:relative;}
+  .section-pad{padding:120px 0 100px;}
+  .section-head{max-width:600px;margin:0 auto 64px;text-align:center;}
+  .section-head h2{font-size:clamp(32px,4vw,48px);margin-top:14px;line-height:1.15;}
+  .section-head p{color:var(--ink-soft);margin-top:18px;font-size:15.5px;line-height:1.8;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--blush);}
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:6vw;align-items:center;}
+  .about-photo{aspect-ratio:3/4;border-radius:24px 24px 140px 24px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(90,67,65,.3);}
+  .about-text h2{font-size:clamp(30px,3.6vw,44px);margin:14px 0 24px;}
+  .about-text p{color:var(--ink-soft);line-height:1.9;font-size:16px;margin-bottom:16px;max-width:480px;}
+  .about-stats{display:flex;gap:46px;margin-top:36px;}
+  .about-stats div b{display:block;font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--rose-deep);}
+  .about-stats div span{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* ---------- GALERIE ---------- */
+  .gallery-filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:50px;}
+  .filter-btn{
+    padding:11px 26px;border-radius:30px;border:1px solid var(--blush-deep);
+    font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;
+    background:transparent;color:var(--ink-soft);
+    transition:all .3s ease;
+  }
+  .filter-btn.active,.filter-btn:hover{background:var(--rose-deep);border-color:var(--rose-deep);color:var(--cloud);}
+  .gallery-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:50px;}
+  .tab-btn{
+    display:flex;align-items:center;gap:9px;
+    padding:12px 28px;border-radius:30px;border:1px solid var(--blush-deep);
+    font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;
+    background:transparent;color:var(--ink-soft);font-family:'Jost',sans-serif;
+    transition:all .3s ease;
+  }
+  .tab-btn.active,.tab-btn:hover{background:var(--rose-deep);border-color:var(--rose-deep);color:var(--cloud);}
+  .ig-dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--gold);
+    display:inline-block;
+  }
+  .tab-btn.active .ig-dot{background:var(--cloud);}
+  .grid-gallery{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-auto-rows:170px;
+    gap:14px;
+  }
+  .ig-panel{min-height:200px;}
+  .ig-placeholder{
+    text-align:center;padding:70px 30px;
+    background:var(--blush);border-radius:28px;
+    border:1px dashed var(--blush-deep);
+  }
+  .ig-placeholder-icon{
+    width:56px;height:56px;border-radius:50%;
+    background:var(--cloud);margin:0 auto 20px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;color:var(--rose-deep);
+  }
+  .ig-placeholder p{color:var(--ink-soft);font-size:14.5px;max-width:380px;margin:0 auto 22px;line-height:1.7;}
+  .g-item{border-radius:18px;overflow:hidden;cursor:pointer;position:relative;}
+  .g-item img{transition:transform .7s ease;}
+  .g-item:hover img{transform:scale(1.08);}
+  .g-item .tag{
+    position:absolute;bottom:14px;left:14px;
+    background:rgba(251,247,245,.9);
+    padding:6px 14px;border-radius:20px;
+    font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);
+    opacity:0;transform:translateY(6px);transition:all .3s ease;
+  }
+  .g-item:hover .tag{opacity:1;transform:translateY(0);}
+  .g-tall{grid-row:span 2;}
+  .g-wide{grid-column:span 2;}
+
+  /* ---------- SERVICES / TARIFS ---------- */
+  .services{background:var(--blush);}
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .service-card{
+    background:var(--cloud);border-radius:28px;padding:46px 34px;
+    text-align:center;position:relative;
+    border:1px solid var(--blush-deep);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .service-card:hover{transform:translateY(-8px);box-shadow:0 30px 50px -25px rgba(90,67,65,.3);}
+  .service-card.featured{background:var(--rose-deep);color:var(--cloud);}
+  .service-card.featured .price,.service-card.featured h3{color:var(--cloud);}
+  .service-card.featured p{color:#F2DEDA;}
+  .service-icon{
+    width:64px;height:64px;border-radius:50%;
+    background:var(--blush);margin:0 auto 22px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--rose-deep);
+  }
+  .service-card.featured .service-icon{background:rgba(255,255,255,.18);color:var(--cloud);}
+  .service-card h3{font-size:24px;margin-bottom:10px;}
+  .price{font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--rose-deep);margin:14px 0 18px;}
+  .price span{font-size:13px;font-family:'Jost',sans-serif;color:var(--ink-soft);}
+  .service-card ul{list-style:none;text-align:left;margin:0 0 30px;font-size:14px;color:var(--ink-soft);line-height:2.1;}
+  .service-card.featured ul{color:#F2DEDA;}
+  .service-card ul li::before{content:'⸻ ';color:var(--rose-deep);}
+  .service-card.featured ul li::before{color:var(--cloud);}
+  .badge-pop{
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:var(--ink);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    padding:6px 18px;border-radius:20px;
+  }
+  .btn-card{
+    display:block;border:1px solid var(--rose-deep);border-radius:30px;
+    padding:13px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+    transition:all .3s ease;
+  }
+  .btn-card:hover{background:var(--rose-deep);color:var(--cloud);}
+  .service-card.featured .btn-card{border-color:var(--cloud);}
+  .service-card.featured .btn-card:hover{background:var(--cloud);color:var(--rose-deep);}
+
+  /* ---------- BLOG ---------- */
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;}
+  .blog-card img{aspect-ratio:4/3;border-radius:20px;margin-bottom:20px;}
+  .blog-card .eyebrow{margin-bottom:10px;display:block;}
+  .blog-card h3{font-size:23px;line-height:1.3;margin-bottom:10px;}
+  .blog-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.75;}
+  .blog-card .read{font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--rose-deep);margin-top:14px;display:inline-block;border-bottom:1px solid var(--rose-deep);}
+
+  /* ---------- TESTIMONIAL / QUOTE BAND ---------- */
+  .quote-band{
+    background:var(--ink);color:var(--cloud);
+    padding:110px 0;text-align:center;
+  }
+  .quote-band .mark{font-family:'Cormorant Garamond',serif;font-size:60px;color:var(--gold);line-height:0;display:block;margin-bottom:18px;}
+  .quote-band p{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,3vw,34px);
+    max-width:760px;margin:0 auto 28px;line-height:1.5;
+  }
+  .quote-band span{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blush-deep);}
+
+  /* ---------- CONTACT / RESERVATION ---------- */
+  .contact{background:var(--blush);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6vw;}
+  .contact-info h2{font-size:clamp(30px,3.6vw,44px);margin:14px 0 22px;}
+  .contact-info p{color:var(--ink-soft);line-height:1.85;max-width:420px;margin-bottom:34px;}
+  .info-line{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;font-size:14.5px;}
+  .info-line b{display:block;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:3px;}
+  .info-dot{width:8px;height:8px;border-radius:50%;background:var(--rose-deep);margin-top:7px;flex-shrink:0;}
+  form{background:var(--cloud);border-radius:28px;padding:44px;border:1px solid var(--blush-deep);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  label{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:7px;}
+  input,select,textarea{
+    width:100%;border:1px solid var(--blush-deep);background:var(--cloud);
+    border-radius:12px;padding:13px 15px;font-family:'Jost',sans-serif;font-size:14.5px;color:var(--ink);
+  }
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rose-deep);}
+  .full{grid-column:1/-1;margin-bottom:16px;}
+  textarea{resize:vertical;min-height:100px;}
+  .submit-btn{
+    width:100%;background:var(--rose-deep);color:var(--cloud);border:none;
+    padding:16px;border-radius:30px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    cursor:pointer;transition:background .3s ease;margin-top:6px;
+  }
+  .submit-btn:hover{background:var(--ink);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:var(--blush);padding:70px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:54px;}
+  footer .logo{color:var(--cloud);margin-bottom:14px;}
+  footer .logo em{color:var(--blush-deep);}
+  footer p.fdesc{font-size:14px;color:#C9B3B0;line-height:1.8;max-width:280px;}
+  footer h4{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--blush-deep);margin-bottom:18px;}
+  footer ul{list-style:none;font-size:14px;line-height:2.4;color:#C9B3B0;}
+  .footer-bottom{
+    border-top:1px solid rgba(240,220,216,.15);padding-top:24px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:12.5px;color:#A98885;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .navlinks,.nav-cta{display:none;}
+    .burger{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;max-width:380px;margin:0 auto;}
+    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .about-photo{max-width:380px;margin:0 auto;}
+    .service-grid,.blog-grid{grid-template-columns:1fr;}
+    .grid-gallery{grid-template-columns:repeat(2,1fr);}
+    .g-wide{grid-column:span 1;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .form-row{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="logo">Solène <em>Le Mazou</em></div>
+  <div class="navlinks">
+    <a href="#about">Mon histoire</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#services">Séances</a>
+    <a href="#blog">Journal</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Réserver</a>
+  <div class="burger">☰</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="cocoon-bg"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" id="cms-hero-eyebrow">Home studio · Chartres, à 1h de Paris</span>
+      <h1 id="cms-hero-title">Capturer la douceur<br>d'<i>avant</i>, le souffle<br>du <i>premier instant</i>.</h1>
+      <p class="lead" id="cms-hero-lead">Je vous accueille dans mon home studio, en toute intimité, pour des portraits artistiques et naturels qui racontent votre histoire : votre grossesse, les premiers instants de votre bébé, ou les souvenirs de votre famille. Déplacement possible à domicile et en extérieur.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn-primary">Réserver une séance</a>
+        <a href="#galerie" class="btn-ghost">Voir la galerie</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=1200&auto=format&fit=crop" alt="Séance grossesse en studio, lumière douce">
+      <div class="hero-badge" id="cms-hero-badge">+20 ans<br>de passion pour la photo</div>
+    </div>
+  </div>
+  <svg class="drape" viewBox="0 0 1440 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,45 L1440,90 L0,90 Z" fill="#F0DCD8"></path>
+  </svg>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap section-pad about-grid">
+    <div class="about-photo">
+      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=900&auto=format&fit=crop" alt="Solène Le Mazou, photographe, en studio">
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">Mon histoire</span>
+      <h2 id="cms-about-title">Une passion née il y a<br>plus de 20 ans.</h2>
+      <p id="cms-about-p1">Adolescente déjà, j'immortalisais mes amies, mes voyages, les visages qui comptaient pour moi. Cet amour de l'image ne m'a jamais quittée : la lumière, les courbes, le bon angle, j'ai toujours eu l'œil pour capturer ce qui mérite d'être gardé pour toujours.</p>
+      <p id="cms-about-p2">Après un parcours professionnel bien différent, j'ai choisi d'écouter ce qui m'animait depuis toujours et de me reconvertir pleinement dans la photographie. Je me suis formée auprès de spécialistes reconnues de la grossesse et de la naissance, pour vous offrir un accompagnement à la fois technique et plein de douceur.</p>
+      <div class="about-stats">
+        <div><b id="cms-stat1-value">20+</b><span id="cms-stat1-label">Années de passion</span></div>
+        <div><b id="cms-stat2-value">Chartres</b><span id="cms-stat2-label">Home studio, 1h de Paris</span></div>
+        <div><b id="cms-stat3-value">100%</b><span id="cms-stat3-label">Photos retouchées à la main</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="section-pad" id="galerie">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Portfolio</span>
+      <h2>La galerie</h2>
+      <p>Un aperçu des séances en studio : grossesse, naissance et créations plus artistiques.</p>
+    </div>
+    <div class="gallery-tabs">
+      <button class="tab-btn active" data-t="curated">Sélection</button>
+      <button class="tab-btn" data-t="instagram">
+        <i class="ig-dot"></i>Instagram en direct
+      </button>
+    </div>
+
+    <!-- ONGLET 1 : galerie sélectionnée à la main (ses meilleures photos) -->
+    <div class="grid-gallery" id="gallery" data-panel="curated">
+      <div class="g-item g-tall" data-c="grossesse"><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=800&auto=format&fit=crop" alt="Séance grossesse en studio"><span class="tag">Grossesse</span></div>
+      <div class="g-item g-wide" data-c="naissance"><img src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?q=80&w=1000&auto=format&fit=crop" alt="Séance naissance nouveau-né"><span class="tag">Naissance</span></div>
+      <div class="g-item" data-c="studio"><img src="https://images.unsplash.com/photo-1554342872-034a06541bb2?q=80&w=700&auto=format&fit=crop" alt="Portrait studio"><span class="tag">Studio</span></div>
+      <div class="g-item" data-c="artistique"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=700&auto=format&fit=crop" alt="Portrait artistique"><span class="tag">Artistique</span></div>
+      <div class="g-item" data-c="naissance"><img src="https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=700&auto=format&fit=crop" alt="Petits pieds nouveau-né"><span class="tag">Naissance</span></div>
+      <div class="g-item g-tall" data-c="artistique"><img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" alt="Portrait artistique en studio"><span class="tag">Artistique</span></div>
+      <div class="g-item g-wide" data-c="grossesse"><img src="https://images.unsplash.com/photo-1532598821282-39fdb7d31700?q=80&w=1000&auto=format&fit=crop" alt="Future maman en studio"><span class="tag">Grossesse</span></div>
+      <div class="g-item" data-c="studio"><img src="https://images.unsplash.com/photo-1561891595-1ab9a0a8d6c5?q=80&w=700&auto=format&fit=crop" alt="Portrait studio lumière douce"><span class="tag">Studio</span></div>
+    </div>
+
+    <!-- ONGLET 2 : flux Instagram en direct (widget Behold.so) -->
+    <div class="ig-panel" data-panel="instagram" hidden>
+      <!--
+        ÉTAPES POUR ACTIVER LE FLUX INSTAGRAM EN DIRECT :
+        1. Crée un compte gratuit sur https://behold.so
+        2. Connecte le compte Instagram Business de ta femme
+        3. Crée un widget, choisis le style "grid"
+        4. Remplace YOUR-WIDGET-ID ci-dessous par l'ID fourni par Behold
+        5. Le flux se mettra à jour automatiquement à chaque nouveau post
+      -->
+      <behold-widget feed-id="YOUR-WIDGET-ID"></behold-widget>
+      <div class="ig-placeholder">
+        <div class="ig-placeholder-icon">◎</div>
+        <p>Le flux Instagram apparaîtra ici une fois le widget Behold.so connecté.</p>
+        <a href="https://behold.so" target="_blank" rel="noopener" class="btn-ghost">Configurer la connexion →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap section-pad">
+    <div class="section-head">
+      <span class="eyebrow">Séances & formules</span>
+      <h2>Choisissez votre parenthèse</h2>
+      <p>Chaque formule comprend les frais de séance et un nombre de fichiers numériques HD retouchés (couleur et noir & blanc), à choisir dans votre galerie privée en ligne. Réservation validée par un acompte de 30%, non remboursable.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">✦</div>
+        <h3 id="cms-s1-title">Grossesse</h3>
+        <div class="price"><span id="cms-s1-price">Sur devis</span><span class="price-unit"> / séance</span></div>
+        <ul id="cms-s1-items">
+          <li>Idéalement au 3ᵉ trimestre</li>
+          <li>Guide tenues envoyé à la réservation</li>
+          <li>7 photos HD retouchées (coul. + N&B)</li>
+          <li>Possibilité avec le futur papa / aînés</li>
+        </ul>
+        <a href="#contact" class="btn-card">Réserver</a>
+      </div>
+      <div class="service-card featured">
+        <span class="badge-pop">Pack le plus choisi</span>
+        <div class="service-icon">✦</div>
+        <h3 id="cms-s2-title">Grossesse + Naissance</h3>
+        <div class="price"><span id="cms-s2-price">Sur devis</span><span class="price-unit"> / pack</span></div>
+        <ul id="cms-s2-items">
+          <li>7 photos grossesse + 7 naissance HD</li>
+          <li>Dressing naissance fourni</li>
+          <li>Accueil tout en douceur après la maternité</li>
+          <li>Solde réglé en 2 fois (séance grossesse / naissance)</li>
+        </ul>
+        <a href="#contact" class="btn-card">Réserver</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✦</div>
+        <h3 id="cms-s3-title">Naissance</h3>
+        <div class="price"><span id="cms-s3-price">Sur devis</span><span class="price-unit"> / séance</span></div>
+        <ul id="cms-s3-items">
+          <li>Idéalement entre J+5 et J+15</li>
+          <li>Temps pris pour apaiser bébé</li>
+          <li>7 photos HD retouchées (coul. + N&B)</li>
+          <li>Avec parents et fratrie si souhaité</li>
+        </ul>
+        <a href="#contact" class="btn-card">Réserver</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:34px;color:var(--ink-soft);font-size:13.5px;" id="cms-services-note">
+      Photos supplémentaires, tirages, albums et coffrets cadeaux disponibles sur demande. Je ne livre que des photos retouchées, jamais de fichiers bruts.
+    </p>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="section-pad" id="blog">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Journal</span>
+      <h2>Derniers articles</h2>
+      <p>Conseils, coulisses et inspirations autour de la photographie de studio.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=700&auto=format&fit=crop" alt="Conseils tenue séance grossesse">
+        <span class="eyebrow">Conseils</span>
+        <h3>Quelle tenue choisir pour sa séance grossesse ?</h3>
+        <p>Matières fluides, teintes douces : nos astuces pour se sentir belle devant l'objectif.</p>
+        <a href="#" class="read">Lire l'article</a>
+      </div>
+      <div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?q=80&w=700&auto=format&fit=crop" alt="Quand faire la séance naissance">
+        <span class="eyebrow">Naissance</span>
+        <h3>Le bon moment pour une séance nouveau-né</h3>
+        <p>Pourquoi les 5 à 12 premiers jours sont idéaux pour photographier bébé en douceur.</p>
+        <a href="#" class="read">Lire l'article</a>
+      </div>
+      <div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=700&auto=format&fit=crop" alt="Coulisses studio">
+        <span class="eyebrow">Coulisses</span>
+        <h3>Dans les coulisses de l'atelier</h3>
+        <p>Comment je prépare le studio pour créer une ambiance cocon avant chaque séance.</p>
+        <a href="#" class="read">Lire l'article</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-band">
+  <div class="wrap">
+    <span class="mark">"</span>
+    <p id="cms-quote-text">Camille a su créer un cocon de douceur pour notre séance naissance. Des photos d'une délicatesse incroyable, qui nous suivront toute la vie.</p>
+    <span id="cms-quote-author">— Léa & Antoine, séance naissance</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap section-pad contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">Réservation</span>
+      <h2>Parlons de votre séance</h2>
+      <p id="cms-contact-lead">Racontez-moi votre projet, je reviens vers vous sous 48h pour convenir ensemble du meilleur moment.</p>
+      <div class="info-line"><span class="info-dot"></span><div><b>Studio</b><span id="cms-contact-address">Chartres — home studio, à 1h de Paris (déplacement possible)</span></div></div>
+      <div class="info-line"><span class="info-dot"></span><div><b>Email</b><span id="cms-contact-email">bonjour@solenelemazou.fr</span></div></div>
+      <div class="info-line"><span class="info-dot"></span><div><b>Site</b>solenelemazou.fr</div></div>
+    </div>
+    <form>
+      <div class="form-row">
+        <div><label>Prénom</label><input type="text" placeholder="Votre prénom"></div>
+        <div><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+      </div>
+      <div class="full"><label>Email</label><input type="email" placeholder="vous@email.com"></div>
+      <div class="full">
+        <label>Type de séance</label>
+        <select>
+          <option>Grossesse</option>
+          <option>Naissance</option>
+          <option>Artistique</option>
+          <option>Je ne sais pas encore</option>
+        </select>
+      </div>
+      <div class="full"><label>Votre message</label><textarea placeholder="Parlez-moi de votre projet, de la date souhaitée..."></textarea></div>
+      <button type="submit" class="submit-btn">Envoyer ma demande</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo">Solène <em>Le Mazou</em></div>
+        <p class="fdesc" id="cms-footer-desc">Photographe à Chartres, spécialisée grossesse, naissance et familles. Home studio, déplacement possible.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul><li><a href="#about">Mon histoire</a></li><li><a href="#galerie">Galerie</a></li><li><a href="#services">Séances</a></li><li><a href="#blog">Journal</a></li></ul>
+      </div>
+      <div>
+        <h4>Séances</h4>
+        <ul><li>Grossesse</li><li>Naissance</li><li>Grossesse + Naissance</li><li>Portraits famille</li></ul>
+      </div>
+      <div>
+        <h4>Suivez-moi</h4>
+        <ul><li><a href="https://www.instagram.com/solenelemazou.photographe/" target="_blank" rel="noopener">Instagram</a></li><li><a href="#">Facebook</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Solène Le Mazou Photographie. Tous droits réservés.</span>
+      <span>Site conçu avec douceur ☁</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const buttons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.g-item');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.f;
+      items.forEach(it => {
+        it.style.display = (f === 'all' || it.dataset.c === f) ? '' : 'none';
+      });
+    });
+  });
+
+  // Bascule entre la galerie sélectionnée et le flux Instagram
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('[data-panel]');
+  let beholdLoaded = false;
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.t;
+      panels.forEach(p => p.hidden = p.dataset.panel !== target);
+      if (target === 'instagram' && !beholdLoaded) {
+        const s = document.createElement('script');
+        s.src = 'https://w.behold.so/widget.js';
+        s.async = true;
+        document.body.appendChild(s);
+        beholdLoaded = true;
+      }
+    });
+  });
+  // Charge le contenu éditable (textes, prix) depuis content.json
+  // Ce fichier est modifié par Solène via l'interface d'administration (/admin)
+  fetch('content.json?_=' + Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (!data) return;
+      const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el && value !== undefined && value !== null) el.textContent = value;
+      };
+      const setHTML = (id, value) => {
+        const el = document.getElementById(id);
+        if (el && value !== undefined && value !== null) el.innerHTML = value;
+      };
+      const setList = (id, items) => {
+        const el = document.getElementById(id);
+        if (el && Array.isArray(items)) {
+          el.innerHTML = items.map(it => `<li>${it}</li>`).join('');
+        }
+      };
+
+      if (data.hero) {
+        setText('cms-hero-eyebrow', data.hero.eyebrow);
+        setHTML('cms-hero-title', data.hero.title);
+        setText('cms-hero-lead', data.hero.lead);
+        setHTML('cms-hero-badge', data.hero.badge);
+      }
+      if (data.about) {
+        setHTML('cms-about-title', data.about.title);
+        setText('cms-about-p1', data.about.paragraph_1);
+        setText('cms-about-p2', data.about.paragraph_2);
+        setText('cms-stat1-value', data.about.stat1_value);
+        setText('cms-stat1-label', data.about.stat1_label);
+        setText('cms-stat2-value', data.about.stat2_value);
+        setText('cms-stat2-label', data.about.stat2_label);
+        setText('cms-stat3-value', data.about.stat3_value);
+        setText('cms-stat3-label', data.about.stat3_label);
+      }
+      if (data.services) {
+        const s = data.services;
+        setText('cms-s1-title', s.card1_title);
+        setText('cms-s1-price', s.card1_price);
+        setList('cms-s1-items', s.card1_items);
+        setText('cms-s2-title', s.card2_title);
+        setText('cms-s2-price', s.card2_price);
+        setList('cms-s2-items', s.card2_items);
+        setText('cms-s3-title', s.card3_title);
+        setText('cms-s3-price', s.card3_price);
+        setList('cms-s3-items', s.card3_items);
+        setText('cms-services-note', s.note);
+      }
+      if (data.contact) {
+        setText('cms-contact-lead', data.contact.lead);
+        setText('cms-contact-address', data.contact.address);
+        setText('cms-contact-email', data.contact.email);
+      }
+      if (data.quote) {
+        setText('cms-quote-text', data.quote.text);
+        setText('cms-quote-author', data.quote.author);
+      }
+      if (data.footer) {
+        setText('cms-footer-desc', data.footer.description);
+      }
+    })
+    .catch(() => { /* content.json absent ou invalide : le site garde son contenu par défaut */ });
+</script>
+
+</body>
+</html>

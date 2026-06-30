@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Pour stocker les photos qu'elle ajoutera plus tard
+media_folder: "images"
+public_folder: "/images"
+
+publish_mode: simple
+
+collections:
+  - name: "contenu"
+    label: "Contenu du site"
+    files:
+      - name: "site"
+        label: "Textes et tarifs"
+        file: "content.json"
+        fields:
+          - { label: "Accueil (hero)", name: "hero", widget: "object", fields:
+              - { label: "Petit texte au-dessus du titre", name: "eyebrow", widget: "string" }
+              - { label: "Titre principal (HTML autorisé : <br>, <i>)", name: "title", widget: "text" }
+              - { label: "Texte de présentation", name: "lead", widget: "text" }
+              - { label: "Badge rond (ex: +20 ans...)", name: "badge", widget: "text" }
+            }
+          - { label: "Mon histoire", name: "about", widget: "object", fields:
+              - { label: "Titre (HTML autorisé : <br>)", name: "title", widget: "text" }
+              - { label: "Premier paragraphe", name: "paragraph_1", widget: "text" }
+              - { label: "Deuxième paragraphe", name: "paragraph_2", widget: "text" }
+              - { label: "Statistique 1 — valeur", name: "stat1_value", widget: "string" }
+              - { label: "Statistique 1 — légende", name: "stat1_label", widget: "string" }
+              - { label: "Statistique 2 — valeur", name: "stat2_value", widget: "string" }
+              - { label: "Statistique 2 — légende", name: "stat2_label", widget: "string" }
+              - { label: "Statistique 3 — valeur", name: "stat3_value", widget: "string" }
+              - { label: "Statistique 3 — légende", name: "stat3_label", widget: "string" }
+            }
+          - { label: "Séances & tarifs", name: "services", widget: "object", fields:
+              - { label: "Formule 1 — titre", name: "card1_title", widget: "string" }
+              - { label: "Formule 1 — prix (ex: 250€)", name: "card1_price", widget: "string" }
+              - { label: "Formule 1 — détails", name: "card1_items", widget: "list" }
+              - { label: "Formule 2 — titre", name: "card2_title", widget: "string" }
+              - { label: "Formule 2 — prix (ex: 250€)", name: "card2_price", widget: "string" }
+              - { label: "Formule 2 — détails", name: "card2_items", widget: "list" }
+              - { label: "Formule 3 — titre", name: "card3_title", widget: "string" }
+              - { label: "Formule 3 — prix (ex: 250€)", name: "card3_price", widget: "string" }
+              - { label: "Formule 3 — détails", name: "card3_items", widget: "list" }
+              - { label: "Note sous les formules", name: "note", widget: "text" }
+            }
+          - { label: "Contact", name: "contact", widget: "object", fields:
+              - { label: "Phrase d'introduction", name: "lead", widget: "text" }
+              - { label: "Adresse / studio", name: "address", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+            }
+          - { label: "Témoignage", name: "quote", widget: "object", fields:
+              - { label: "Texte du témoignage", name: "text", widget: "text" }
+              - { label: "Signature (ex: — Léa & Antoine)", name: "author", widget: "string" }
+            }
+          - { label: "Pied de page", name: "footer", widget: "object", fields:
+              - { label: "Description courte", name: "description", widget: "text" }
+            }
